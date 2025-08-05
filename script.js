@@ -119,7 +119,17 @@ function validateLettersUsed(word) {
   return true;
 }
 
-function validateWord(word) {
+async function isValidEnglishWord(word) {
+  try {
+    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
+    return response.ok;
+  } catch (error) {
+    console.error('Dictionary API error:', error);
+    return true; // Fallback to accept the word if API fails
+  }
+}
+
+async function validateWord(word) {
   if (word.length < 3) return false;
   if (usedWords.has(word)) return false;
   
@@ -130,42 +140,56 @@ function validateWord(word) {
   const hasVowel = /[AEIOU]/.test(word);
   if (!hasVowel) return false;
   
-  return true;
+  // Check if it's a valid English word
+  const isValid = await isValidEnglishWord(word);
+  return isValid;
 }
 
-function submitWord() {
+async function submitWord() {
   const word = inputEl.value.trim().toUpperCase();
   if (!word) return;
-  if (validateWord(word)) {
-    usedWords.add(word);
-    score += word.length;
-    scoreEl.textContent = score;
-    const li = document.createElement('li');
-    li.textContent = word;
-    wordListEl.appendChild(li);
-    successSound.currentTime = 0;
-    successSound.play();
-    inputEl.value = '';
-  } else {
+  
+  // Disable input during validation
+  inputEl.disabled = true;
+  submitBtn.disabled = true;
+  
+  try {
+    if (await validateWord(word)) {
+      usedWords.add(word);
+      score += word.length;
+      scoreEl.textContent = score;
+      const li = document.createElement('li');
+      li.textContent = word;
+      wordListEl.appendChild(li);
+      successSound.currentTime = 0;
+      successSound.play();
+      inputEl.value = '';
+    } else {
+      failSound.currentTime = 0;
+      failSound.play();
+      inputEl.classList.add('invalid');
+      setTimeout(() => {
+        inputEl.classList.remove('invalid');
+        inputEl.value = '';
+      }, 600); // Matches animation duration
+    }
+  } catch (error) {
+    console.error('Error validating word:', error);
     failSound.currentTime = 0;
     failSound.play();
-    inputEl.classList.add('invalid');
-    // Prevent input during animation
-    inputEl.disabled = true;
-    setTimeout(() => {
-      inputEl.classList.remove('invalid');
-      inputEl.disabled = false;
-      inputEl.value = '';
-      inputEl.focus();
-    }, 600); // Matches animation duration
+  } finally {
+    // Re-enable input
+    inputEl.disabled = false;
+    submitBtn.disabled = false;
+    inputEl.focus();
   }
 }
 
 
 // Single submit event listener for the form
-formEl.addEventListener('submit', e => {
+formEl.addEventListener('submit', async e => {
   e.preventDefault();
-  submitWord();
+  await submitWord();
 });
 
 // Single restart button event listener
