@@ -180,28 +180,7 @@ inputEl.addEventListener('keydown', e => {
   }
 });
 submitBtn.addEventListener('click', submitWord);
-function handleInput(e) {
-  if (e.key === 'Enter') {
-    const word = inputEl.value.trim().toUpperCase();
-    if (validateWord(word)) {
-      usedWords.add(word);
-      score += word.length;
-      scoreEl.textContent = score;
-      const li = document.createElement('li');
-      li.textContent = word;
-      wordListEl.appendChild(li);
-      successSound.currentTime = 0;
-      successSound.play();
-    } else {
-      failSound.currentTime = 0;
-      failSound.play();
-    }
-    inputEl.value = '';
-  }
-}
-
-inputEl.addEventListener('keydown', handleInput);
-//*restartBtn.addEventListener('click', startGame);
+// Restart button event listener is already defined above
 
 function applyTheme(theme) {
   document.body.classList.toggle('dark', theme === 'dark');
