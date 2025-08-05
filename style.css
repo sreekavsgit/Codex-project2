@@ -1,0 +1,130 @@
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --tile-bg: #ffffff;
+  --tile-border: #cccccc;
+  --accent-color: #0077ff;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #e2e2e2;
+  --tile-bg: #333333;
+  --tile-border: #555555;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.scores {
+  display: flex;
+  gap: 1rem;
+}
+
+#theme-toggle {
+  background: var(--tile-bg);
+  border: 2px solid var(--tile-border);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 60px);
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.tile {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: var(--tile-bg);
+  border: 2px solid var(--tile-border);
+  border-radius: 8px;
+  transition: transform 0.2s ease, background 0.3s ease;
+  user-select: none;
+}
+
+.tile:hover {
+  transform: scale(1.1) rotate(2deg);
+  background: var(--accent-color);
+  color: #fff;
+}
+
+#word-input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: 2px solid var(--tile-border);
+  border-radius: 4px;
+  background: var(--tile-bg);
+  color: var(--text-color);
+}
+
+#word-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  max-width: 240px;
+  width: 100%;
+  text-align: center;
+}
+
+#word-list li {
+  margin: 2px 0;
+}
+
+button#restart {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button#restart:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(4, 50px);
+    gap: 8px;
+  }
+  .tile {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
