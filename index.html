@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1 class="title">Word Game</h1>
+  <header class="controls">
+    <div class="scores">
+      <div>Score: <span id="score">0</span></div>
+      <div>High Score: <span id="high-score">0</span></div>
+      <div>Time: <span id="timer">60</span>s</div>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </header>
+  <main>
+    <div id="grid" class="grid"></div>
+    <div class="input-area">
+      <input id="word-input" type="text" placeholder="Type a word" autocomplete="off" />
+      <button id="submit-word">Submit</button>
+    </div>
+    <ul id="word-list"></ul>
+    <button id="restart">Restart</button>
+  </main>
+  <audio id="success-sound" src="data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAAB/z/vurVcTASh3yfrxtV8YACJvw/f1vGcdAB1nvPX3w28iABhftfH6yXcoARNXre77z34uAg9Qpur81YY0AwxInuX92446BghBluD+4JZBCAY6jtv95Z5IDAM0htX86qZQDwIuf8/77q1XEwEod8n68bVfGAAib8P39bxnHQAdZ7z198NvIgAYX7Xx+sl3KAETV63u+89/LgIPUKbq/NWGNAMMSJ7l/duOOgYIQZbg/uCWQQgGOo7b/eWeSAwDNIbV/OqmUA8CLn/P++6tVxMBKHfJ+vG1XxgAIm/D9/W8Zx0AHWe89ffDbyIAGF+18frJdygBE1et7vvPfi4CD1Cm6vzVhjQDDEie5f3bjjoGCEGW4P7glkEIBjqO2/3lnkgMAzSG1fzqplAPAi5+z/vurVcTASh3yfrxtV8YACJvw/f1vGcdAB1nvPX3w28iABhftfH6yXcoARNXre77z34uAg9Qpur81YY0AwxInuX92446BghBluD+4JZBCAY6jtv95Z5IDAM0htX86qZQDwIu" preload="auto"></audio>
+  <audio id="fail-sound" src="data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAAB/kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdrf5KmuMnY5fD3/P789/Dl2Mm4ppJ/a1dFNCUYDQYBAAEGDRglNEVXa3+SprjJ2OXw9/z+/Pfw5djJuKaSf2tXRTQlGA0GAQABBg0YJTRFV2t+kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdrf5KmuMnY5fD3/P789/Dl2Mm4ppJ/a1dFNCUYDQYBAAEGDRglNEVXa36SprjJ2OXw9/z+/Pfw5djJuKaSfmtXRTQlGA0GAQABBg0YJTRFV2t+kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdrf5KmuMnY5fD3/P789/Dl2Mm4ppJ+a1dFNCUYDQYBAAEGDRglNEVXa3+SprjJ2OXw9/z+/Pfw5djJuKaSf2tXRTQlGA0GAQABBg0YJTRFV2t+kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdr" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
