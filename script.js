@@ -162,26 +162,22 @@ function submitWord() {
 }
 
 
+// Single submit event listener for the form
 formEl.addEventListener('submit', e => {
   e.preventDefault();
   submitWord();
 });
+
+// Single restart button event listener
 restartBtn.addEventListener('click', startGame);
+
+// Single word list click listener
 wordListEl.addEventListener('click', e => {
   if (e.target.tagName === 'LI') {
     inputEl.value = e.target.textContent;
     inputEl.focus();
   }
 });
-
-inputEl.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    submitWord();
-  }
-});
-submitBtn.addEventListener('click', submitWord);
-// Restart button event listener is already defined above
-
 function applyTheme(theme) {
   document.body.classList.toggle('dark', theme === 'dark');
   themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
