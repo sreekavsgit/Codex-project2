@@ -1,3 +1,6 @@
+#submit-word {
+  margin-top: 1rem;
+}
 :root {
   --bg-color: #D3D3D3;
   --text-color: #003366;
@@ -92,10 +95,22 @@ main {
   user-select: none;
 }
 
+.tile {
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  transition: all 0.1s ease;
+  box-shadow: 0 4px 0 var(--tile-border);
+}
+
 .tile:hover {
-  transform: scale(1.1) rotate(2deg);
   background: var(--accent-color);
   color: #fff;
+}
+
+.tile:active {
+  top: 4px;
+  box-shadow: 0 0 0 var(--tile-border);
 }
 
 .input-area {
@@ -113,6 +128,19 @@ main {
   background: var(--tile-bg);
   color: var(--text-color);
   box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+#word-input.invalid {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: #ff0000;
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 #submit-word {
