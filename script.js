@@ -5,6 +5,7 @@ const highScoreEl = document.getElementById('high-score');
 const timerEl = document.getElementById('timer');
 const wordListEl = document.getElementById('word-list');
 const restartBtn = document.getElementById('restart');
+const submitBtn = document.getElementById('submit-word');
 const themeToggle = document.getElementById('theme-toggle');
 const successSound = document.getElementById('success-sound');
 const failSound = document.getElementById('fail-sound');
@@ -37,6 +38,7 @@ function startGame() {
   scoreEl.textContent = score;
   inputEl.value = '';
   inputEl.disabled = false;
+  submitBtn.disabled = false;
   timeLeft = 60;
   timerEl.textContent = timeLeft;
   if (timerId) clearInterval(timerId);
@@ -54,6 +56,7 @@ function startGame() {
 function endGame() {
   clearInterval(timerId);
   inputEl.disabled = true;
+  submitBtn.disabled = true;
   const words = Array.from(usedWords);
   alert(`Time's up!\nScore: ${score}\nWords: ${words.join(', ')}`);
   if (score > highScore) {
@@ -77,6 +80,31 @@ function validateWord(word) {
   return true;
 }
 
+function submitWord() {
+  const word = inputEl.value.trim().toUpperCase();
+  if (!word) return;
+  if (validateWord(word)) {
+    usedWords.add(word);
+    score += word.length;
+    scoreEl.textContent = score;
+    const li = document.createElement('li');
+    li.textContent = word;
+    wordListEl.appendChild(li);
+    successSound.currentTime = 0;
+    successSound.play();
+  } else {
+    failSound.currentTime = 0;
+    failSound.play();
+  }
+  inputEl.value = '';
+}
+
+inputEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    submitWord();
+  }
+});
+submitBtn.addEventListener('click', submitWord);
 function handleInput(e) {
   if (e.key === 'Enter') {
     const word = inputEl.value.trim().toUpperCase();

@@ -1,4 +1,14 @@
 :root {
+  --bg-color: #ffe4c4;
+  --text-color: #003366;
+  --tile-bg: #ffffff;
+  --tile-border: #cccccc;
+  --accent-color: #003366;
+  --accent-text: #ffe4c4;
+}
+
+body.dark {
+  --bg-color: #001a33;
   --bg-color: #f5f5f5;
   --text-color: #333;
   --tile-bg: #ffffff;
@@ -24,6 +34,15 @@ body {
   align-items: center;
 }
 
+
+.title {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  background: var(--accent-color);
+  color: var(--accent-text);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+}
 .controls {
   width: 100%;
   max-width: 500px;
@@ -79,6 +98,11 @@ main {
   color: #fff;
 }
 
+.input-area {
+  margin-top: 1rem;
+  display: flex;
+}
+
 #word-input {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -88,6 +112,20 @@ main {
   border-radius: 4px;
   background: var(--tile-bg);
   color: var(--text-color);
+  box-sizing: border-box;
+}
+
+#submit-word {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--accent-color);
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#submit-word:hover {
+  opacity: 0.9;
 }
 
 #word-list {
@@ -128,3 +166,17 @@ button#restart:hover {
     font-size: 1.5rem;
   }
 }
+
+button {
+  background: var(--accent-color);
+  color: var(--accent-text);
+  border: 2px solid var(--accent-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#word-input,
+#submit-word {
+  height: 2.5rem;
+}
+
