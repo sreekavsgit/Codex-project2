@@ -201,7 +201,7 @@ function handleInput(e) {
 }
 
 inputEl.addEventListener('keydown', handleInput);
-restartBtn.addEventListener('click', startGame);
+//*restartBtn.addEventListener('click', startGame);
 
 function applyTheme(theme) {
   document.body.classList.toggle('dark', theme === 'dark');
