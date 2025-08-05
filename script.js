@@ -1,4 +1,5 @@
 const gridEl = document.getElementById('grid');
+const formEl = document.getElementById('word-form');
 const inputEl = document.getElementById('word-input');
 const scoreEl = document.getElementById('score');
 const highScoreEl = document.getElementById('high-score');
@@ -98,6 +99,19 @@ function submitWord() {
   }
   inputEl.value = '';
 }
+
+
+formEl.addEventListener('submit', e => {
+  e.preventDefault();
+  submitWord();
+});
+restartBtn.addEventListener('click', startGame);
+wordListEl.addEventListener('click', e => {
+  if (e.target.tagName === 'LI') {
+    inputEl.value = e.target.textContent;
+    inputEl.focus();
+  }
+});
 
 inputEl.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
