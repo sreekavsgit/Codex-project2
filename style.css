@@ -9,6 +9,15 @@
 
 body.dark {
   --bg-color: #001a33;
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --tile-bg: #ffffff;
+  --tile-border: #cccccc;
+  --accent-color: #0077ff;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
   --text-color: #e2e2e2;
   --tile-bg: #333333;
   --tile-border: #555555;
@@ -25,6 +34,7 @@ body {
   align-items: center;
 }
 
+
 .title {
   margin-top: 1rem;
   font-size: 2.5rem;
@@ -33,7 +43,6 @@ body {
   padding: 0.25rem 0.75rem;
   border-radius: 6px;
 }
-
 .controls {
   width: 100%;
   max-width: 500px;
@@ -49,6 +58,10 @@ body {
 }
 
 #theme-toggle {
+  background: var(--tile-bg);
+  border: 2px solid var(--tile-border);
+  border-radius: 4px;
+  cursor: pointer;
   padding: 0.5rem;
 }
 
@@ -85,13 +98,13 @@ main {
   color: #fff;
 }
 
-
 .input-area {
   margin-top: 1rem;
   display: flex;
 }
 
 #word-input {
+  margin-top: 1rem;
   padding: 0.5rem;
   font-size: 1rem;
   text-transform: uppercase;
@@ -130,6 +143,12 @@ main {
 
 button#restart {
   margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button#restart:hover {
@@ -160,3 +179,4 @@ button {
 #submit-word {
   height: 2.5rem;
 }
+
