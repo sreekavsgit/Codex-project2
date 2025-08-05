@@ -6,6 +6,7 @@ const timerEl = document.getElementById('timer');
 const wordListEl = document.getElementById('word-list');
 const restartBtn = document.getElementById('restart');
 const submitBtn = document.getElementById('submit-word');
+
 const themeToggle = document.getElementById('theme-toggle');
 const successSound = document.getElementById('success-sound');
 const failSound = document.getElementById('fail-sound');
@@ -105,6 +106,27 @@ inputEl.addEventListener('keydown', e => {
   }
 });
 submitBtn.addEventListener('click', submitWord);
+function handleInput(e) {
+  if (e.key === 'Enter') {
+    const word = inputEl.value.trim().toUpperCase();
+    if (validateWord(word)) {
+      usedWords.add(word);
+      score += word.length;
+      scoreEl.textContent = score;
+      const li = document.createElement('li');
+      li.textContent = word;
+      wordListEl.appendChild(li);
+      successSound.currentTime = 0;
+      successSound.play();
+    } else {
+      failSound.currentTime = 0;
+      failSound.play();
+    }
+    inputEl.value = '';
+  }
+}
+
+inputEl.addEventListener('keydown', handleInput);
 restartBtn.addEventListener('click', startGame);
 
 function applyTheme(theme) {

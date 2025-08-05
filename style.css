@@ -8,6 +8,15 @@
 
 body.dark {
   --bg-color: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --tile-bg: #ffffff;
+  --tile-border: #cccccc;
+  --accent-color: #0077ff;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
   --text-color: #e2e2e2;
   --tile-bg: #333333;
   --tile-border: #555555;
@@ -30,6 +39,7 @@ body {
   color: var(--accent-color);
   text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
+
 
 .controls {
   width: 100%;
@@ -93,6 +103,8 @@ main {
 }
 
 #word-input {
+  margin-top: 1rem;
+
   padding: 0.5rem;
   font-size: 1rem;
   text-transform: uppercase;
@@ -101,6 +113,7 @@ main {
   background: var(--tile-bg);
   color: var(--text-color);
 }
+
 
 #submit-word {
   margin-left: 0.5rem;
@@ -115,6 +128,7 @@ main {
 #submit-word:hover {
   opacity: 0.9;
 }
+
 
 #word-list {
   list-style: none;
