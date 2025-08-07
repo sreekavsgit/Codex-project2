@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Word Grid Challenge</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Budget Planner</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="title">Word Grid Challenge</h1>
-  <header class="controls">
-    <div class="scores">
-      <div>Score: <span id="score">0</span></div>
-      <div>High Score: <span id="high-score">0</span></div>
-      <div>Time: <span id="timer">60</span>s</div>
-    </div>
-    <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
-  </header>
-    <div id="grid" class="grid"></div>
-    <form id="word-form" class="input-area">
-      <input id="word-input" type="text" placeholder="Type a word" autocomplete="off" />
-      <button id="submit-word" type="submit">Submit</button>
-    </form>
-    <ul id="word-list"></ul>
-    <button id="restart">Restart</button>
-  </main>
-  <audio id="success-sound" src="data:audio/wav;base64,UklGRpYDAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YXIDAAAAAAEQwh8EL4g9Fkt1V3Vi6Wusc555p323f8V/0n3meQ90ZmwKYx9Y0ktVPt0vpCDpEOkA5/Ag4dbRRcOotTapIZ6VlLmMrIaHglqALoAEgtSFj4sek2OcOKdys+DAS8963jDuLv4xDv0dUC3tO5pJHlZIYexq4XIJeUt9lH/efyV+cXrRdFxtL2RvWUhN6z+MMWcitxK8Arfy5uKK0+HEJrePqlCflZWGjUSH5oJ/gBmAtYFMhdCKLJJBm+ql/rFLv53Nudxi7Fv8YQw3HJsrTzoaSMJUFmDoaRBybnjofGx/739xfvZ6jXVLbk9lu1q6Tn5BOTMnJIQUjgSH9K3kQdWBxqi47auEoJyWWo7ih0yDq4ALgGyByoQYij+RI5qhpI6wur3xy/naluqI+pAKbhrjKa44lkZiU+Be32g6cc13f3w8f/p/tn50e0J2NW9pZgJcKVANQ+Q05iVQFmEGWfZ25vrWI8gtuk+tvqGnlzSPhoi4g96AA4AqgU+EZYlYkAuZXKMiry28SMo72crotvi/CKUYKCgKNw9F/lGkXdFnXXAldw98Bn/+f/R+7Hvydhpwf2dEXZJRmUSMNqMnHBgzCCr4QOi22MnJtru2rvyiuJgTkDGJK4QYgQKA74Dag7mIdo/5lx2iuq2iuqLIf9f/5uT27QbaFmwmYzWEQ5ZQY1y9ZntveHaZe8l+/H8tf158m3f4cI9ogV74UiFGMTheKeUZBQr8+Qzqc9pxy0O9ILA/pM+Z+ZDhiaWEWIEIgLqAbIMSiJuO65bioFesHLn+xsXVNuUT9RoFDhWuJLoz9kEpTx5bpGWSbsR1HHuGfvN/Xn/JfD540XGZabpfWVSmR9M5FyuuG9YLz/vY6zLcHM3Tvo+xh6XqmuSRmIokhZ6BFICMgASDcofFjeOVrJ/4qpm3XsUO1G7jQvNIA0ET7iINMmRAuE3TWYZkpG0KdZl6PH7jf4l/Ln3beKNynmrtYLZVJ0lyO80sdR2mDaL9pu3z3crOZsACs9SmC5zVklWLqoXrgSeAZICjgtmG9ozhlHuenakatsDDWNKo4XLxdQFzESshXjDPPkNMhFhiY7FsSnQQeux9zX+tf4x9cnlwc55rG2IPV6RKDT2BLjofdg90/3Tvtt960P3BebQlqDKdy5MYjDeGP4JAgEOASII=" preload="auto"></audio>
-    <audio id="fail-sound" src="data:audio/wav;base64,UklGRpYDAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YXIDAAAAAAIEBAgEDAEQ+hPuF9sbwh+hI3cnQysEL7kyYTb8OYg9BUFxRM1HFktMTm5RfFR1V1haJF3ZX3Vi+WRjZ7Rp6WsEbgNw5nGsc1V14XZOeJ55z3rhe9N8p31afu5+Y3+3f+t//n/yf8V/eH8Mf39+0n0GfRp8EHvmeZ14NneydQ90UHJzcHtuZmw3auxniGUKY3NgxF39Wh9YK1UiUgRP0kuNSDZFzkFVPsw6NDePM90vHixVKIEkpCC/HNMY4BTpEOwM7QjsBOkA5/zl+OT05/Dt7PjoCeUg4T/dZ9mZ1dbRHs5yytTGRcPEv1S89biotW2yRq8zrDapTqZ9o8OgIZ6XmyeZ0ZaVlHSSb5CFjrmMCYt3iQKIrIZ0hVuEYYOHgsyBMIG1gFqAHoADgAiALoBzgNmAXoEEgsmCrYOxhNSFFYd1iPOJj4tIjR6PEJEek0iVjJfrmWOc9J6eoWCkOKcnqiytRbBys7O2BrpqveDAZcT5x5zLS88H087WoNp63l7iSOY66jDuK/Iq9iv6Lv4wAjIGMwoxDiwSIhYTGv0d4CG6JYopUC0LMbk0WzjtO3E/5UJIRppJ2UwEUBxTHlYLWeFboV5IYddjTWaqaOxqE20ebw5x4XKYdDF2rHcJeUh6aHtpfEt9DX6vfjJ/lH/Xf/l/+3/ef59/QX/DfiV+Z32JfI17cXo2ed13ZnbRdB9zT3Fkb1xtOGv6aKFmL2SjYf9eQ1xvWYVWhlNxUEhNDEq9RlxD6z9pPNg4OTWMMdMtDyo/JmcihR6cGqwWtxK9Dr8Kvga8Arr+t/q29rfyu+7E6tLm5uIC3ybbU9eK083PHMx3yOHEWsHivXu6Jrfjs7Owl62Pqp2nwqT9oVCfu5w/mt2XlZVok1aRYI+GjcmLKoqoiESH/oXXhM+D5oIdgnOB6YB/gDWADIACgBmAUICngB6BtYFrgkGDN4RMhX+G0odCidCKfIxFjiqQLJJJlIGW1JhBm8edZaAco+qlz6jKq9qu/rE2tYG43rtLv8rCV8bzyZ3NU9EV1eLYudyY4IDkbuhi7FzwWfRZ+Fv8XQBgBGEIYQxeEFYUSRg3HB0g+yPQJ5srWy8PM7Y2TzraPVVBwEQaSGFLlk62UcJUuVeaWmRdFmCxYjJlmmfoaRxsNG4wcBBy1HN6dQN3bng=" preload="auto"></audio>
-    </main>
-  <audio id="success-sound" src="data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAAB/z/vurVcTASh3yfrxtV8YACJvw/f1vGcdAB1nvPX3w28iABhftfH6yXcoARNXre77z34uAg9Qpur81YY0AwxInuX92446BghBluD+4JZBCAY6jtv95Z5IDAM0htX86qZQDwIuf8/77q1XEwEod8n68bVfGAAib8P39bxnHQAdZ7z198NvIgAYX7Xx+sl3KAETV63u+89/LgIPUKbq/NWGNAMMSJ7l/duOOgYIQZbg/uCWQQgGOo7b/eWeSAwDNIbV/OqmUA8CLn/P++6tVxMBKHfJ+vG1XxgAIm/D9/W8Zx0AHWe89ffDbyIAGF+18frJdygBE1et7vvPfi4CD1Cm6vzVhjQDDEie5f3bjjoGCEGW4P7glkEIBjqO2/3lnkgMAzSG1fzqplAPAi5+z/vurVcTASh3yfrxtV8YACJvw/f1vGcdAB1nvPX3w28iABhftfH6yXcoARNXre77z34uAg9Qpur81YY0AwxInuX92446BghBluD+4JZBCAY6jtv95Z5IDAM0htX86qZQDwIu" preload="auto"></audio>
-  <audio id="fail-sound" src="data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAAB/kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdrf5KmuMnY5fD3/P789/Dl2Mm4ppJ/a1dFNCUYDQYBAAEGDRglNEVXa3+SprjJ2OXw9/z+/Pfw5djJuKaSf2tXRTQlGA0GAQABBg0YJTRFV2t+kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdrf5KmuMnY5fD3/P789/Dl2Mm4ppJ/a1dFNCUYDQYBAAEGDRglNEVXa36SprjJ2OXw9/z+/Pfw5djJuKaSfmtXRTQlGA0GAQABBg0YJTRFV2t+kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdrf5KmuMnY5fD3/P789/Dl2Mm4ppJ+a1dFNCUYDQYBAAEGDRglNEVXa3+SprjJ2OXw9/z+/Pfw5djJuKaSf2tXRTQlGA0GAQABBg0YJTRFV2t+kqa4ydjl8Pf8/vz38OXYybimkn5rV0U0JRgNBgEAAQYNGCU0RVdr" preload="auto"></audio>
+  <div class="container">
+    <h1>Budget Planner</h1>
+
+    <section class="budget-section">
+      <h2>Set Monthly Budget</h2>
+      <form id="budget-form">
+        <input type="number" id="budget-input" placeholder="Enter budget amount" min="0" step="0.01" required>
+        <button type="submit">Save Budget</button>
+      </form>
+    </section>
+
+    <section class="add-expense">
+      <h2>Add Expense</h2>
+      <form id="expense-form">
+        <input type="text" id="expense-name" placeholder="Expense name" required>
+        <input type="number" id="expense-amount" placeholder="Amount" min="0" step="0.01" required>
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="summary">
+      <h2>Summary</h2>
+      <div>Budget: $<span id="display-budget">0.00</span></div>
+      <div>Total Expenses: $<span id="display-total">0.00</span></div>
+      <div>Remaining: $<span id="display-remaining">0.00</span></div>
+    </section>
+
+    <section class="expenses-list">
+      <h2>Expenses</h2>
+      <table id="expenses-table">
+        <thead>
+          <tr><th>Name</th><th>Amount</th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
